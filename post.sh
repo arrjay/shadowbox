@@ -30,14 +30,7 @@ yum -y install lsscsi pciutils usbutils dmidecode
 # 02:00.0 - 1b73:1100 (Fresco Logic FL1100 USB 3.0 Host Controller)
 # Group 4 (PCI Bridge 00:04.0)
 # 03:00.0 - 1b4b:9230 (Marvell Technology Group SATA 6GB/s Controller)
-# Group 10 (PCI Bridge 00:14.4)
-# 04:05.0 - 14f1:8800 (Conexant CX23880/1/2/3 PCI Video and Audio Decoder)
-# 04:05.1 - 14f1:8801 (Conexant CX23880 Audio Port)
-# 04:05.2 - 14f1:8802 (Conexant CS23880 MPEG Port)
-# 04:06.0 - 14f1:8800 (Conexant CX23880/1/2/3 PCI Video and Audio Decoder)
-# 04:06.1 - 14f1:8801 (Conexant CX23880 Audio Port)
-# 04:06.2 - 14f1:8802 (Conexant CS23880 MPEG Port)
-grubby --args="pci-stub.ids=1002:6749,1002:aa90,1b73:1100,1b4b:9230,14f1:8800,14f1:8801,14f1:8802" --update-kernel $(grubby --default-kernel)
+grubby --args="pci-stub.ids=1002:6749,1002:aa90,1b73:1100,1b4b:9230" --update-kernel $(grubby --default-kernel)
 
 # install libvirt, qemu, so on
 yum -y install libvirt qemu-kvm virt-install
@@ -72,7 +65,3 @@ printf '/dev/mapper/fedora_shadowbox-libvirt_images /var/lib/libvirt/images ext4
 ## the fileserver lives in a logical volume, go make that
 # lvcreate -nfileserver -L18G fedora_shadowbox
 # virt-install --name fileserver --ram 1536 --disk /dev/fedora_shadowbox/fileserver --network bridge=br0 --graphics vnc --memorybacking nosharepages=on -l http://mirrors.kernel.org/centos/7/os/x86_64/ --boot uefi --extra-args "ks=http://172.16.128.80/ks/shadowbox-fileserver.ks"
-
-## the video processor uses a different LV...
-# lvcreate -nvideo_boot -L12G fedora_shadowbox
-# virt-install --name video --ram 1536 --disk /dev/fedora_shadowbox/video_boot --network bridge=br0 --graphics vnc --memorybacking nosharepages=on -l http://mirrors.kernel.org/fedora/releases/23/Server/x86_64/os/
