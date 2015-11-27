@@ -32,6 +32,8 @@ logvol /  --fstype="ext4" --size=8192 --name=root --vgname=shadowbox_fs
 
 %packages
 @core
+mdadm
+rsync
 
 %end
 
