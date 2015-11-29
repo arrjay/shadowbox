@@ -24,13 +24,13 @@ yum -y install lsscsi pciutils usbutils dmidecode
 # as far as I can tell, pre-assigning some devices that share a pci id with
 # devices you want to use isn't easily doable, you will need hotplug there.
 # Group 2 (PCI Bridge 00:02.0)
-# 01:00.0 - 1002:6749 (AMD Turks GL FirePro)
-# 01:00.1 - 1002:aa90 (AMD Turks GL Firepro HDMI Audio)
+# 01:00.0 - 1002:6749 (AMD Barts XT)
+# 01:00.1 - 1002:aa90 (AMD Barts HDMI Audio)
 # Group 3 (PCI Bridge 00:03.0)
 # 02:00.0 - 1b73:1100 (Fresco Logic FL1100 USB 3.0 Host Controller)
 # Group 4 (PCI Bridge 00:04.0)
 # 03:00.0 - 1b4b:9230 (Marvell Technology Group SATA 6GB/s Controller)
-grubby --args="pci-stub.ids=1002:6749,1002:aa90,1b73:1100,1b4b:9230" --update-kernel $(grubby --default-kernel)
+grubby --args="pci-stub.ids=1002:6738,1002:aa88,1b73:1100,1b4b:9230" --update-kernel $(grubby --default-kernel)
 
 # install libvirt, qemu, so on
 yum -y install libvirt qemu-kvm virt-install
