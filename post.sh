@@ -47,6 +47,9 @@ yum install virtio-win
 # RAID utilities
 yum -y install mdadm
 
+# git
+yum -y install git
+
 # create libvirt_images fs
 lvcreate -nlibvirt_images -L8G fedora_shadowbox
 mkfs.ext4 /dev/fedora_shadowbox/libvirt_images
